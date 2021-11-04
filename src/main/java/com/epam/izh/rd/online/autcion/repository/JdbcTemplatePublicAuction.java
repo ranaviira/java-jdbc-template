@@ -3,6 +3,10 @@ package com.epam.izh.rd.online.autcion.repository;
 import com.epam.izh.rd.online.autcion.entity.Bid;
 import com.epam.izh.rd.online.autcion.entity.Item;
 import com.epam.izh.rd.online.autcion.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
@@ -10,7 +14,15 @@ import java.util.Map;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
 
+@Repository
 public class JdbcTemplatePublicAuction implements PublicAuction {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    public JdbcTemplatePublicAuction(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
 
     @Override
     public List<Bid> getUserBids(long id) {
